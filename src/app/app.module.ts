@@ -7,20 +7,28 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HeroDetailComponent
+    HttpClientModule
   ],
   declarations: [
     AppComponent,
     DashboardComponent,
     HeroesComponent,
-    MessagesComponent
+    MessagesComponent,
+    HeroDetailComponent
   ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
+
+HttpClientInMemoryWebApiModule.forRoot(
+  InMemoryDataService, { dataEncapsulation: false }
+)
